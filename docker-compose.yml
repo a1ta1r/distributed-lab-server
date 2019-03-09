@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  app:
+    image: "distributed-lab-server:1.0"
+    ports:
+      - "3030:3005"
+    environment:
+      PORT: 3005
+    depends_on:
+      - db
+      - rabbitmq-service
+    restart: on-failure
   db:
     image: mysql:5.6
     environment:
