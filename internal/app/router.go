@@ -9,5 +9,7 @@ func InitRouter() *gin.Engine {
 		context.JSON(200, gin.H{"response": "OK"})
 	})
 
+	router.GET("/users", UserController.GetUsers)
+
 	return router
 }
