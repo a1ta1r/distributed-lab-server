@@ -1,7 +1,0 @@
-PUT http://localhost:3001/users/10
-Accept: */*
-Cache-Control: no-cache
-
-< user.json
-###
-

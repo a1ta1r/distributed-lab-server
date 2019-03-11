@@ -1,0 +1,16 @@
+GET http://localhost:3001/users/4
+Accept: */*
+Cache-Control: no-cache
+
+< user.json
+
+###
+
+POST http://localhost:3001/teams
+Accept: */*
+Cache-Control: no-cache
+
+< team.json
+
+###
+

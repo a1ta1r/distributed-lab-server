@@ -5,5 +5,5 @@ type User struct {
 	Name     string `json:"name"`
 	Position string `json:"position"`
 	Status   string `json:"status"`
-	Team     Team   `json:"team"`
+	TeamID   uint   `json:"team_id"`
 }

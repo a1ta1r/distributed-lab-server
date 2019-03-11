@@ -3,7 +3,7 @@ package entity
 type Team struct {
 	DbAwareEntity
 	Name     string    `json:"name"`
-	Owner    *User      `json:"owner"`
-	Members  *[]User    `json:"members"`
+	OwnerID  uint      `json:"owner_id"`
+	Users    []User    `json:"users"`
 	Projects []Project `json:"projects"`
 }
