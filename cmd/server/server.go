@@ -6,6 +6,8 @@ import (
 )
 
 func main() {
+	app.UpdateSchema()
+
 	router := app.InitRouter()
 
 	var port string

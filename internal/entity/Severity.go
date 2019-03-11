@@ -8,12 +8,12 @@ const (
 
 type Severity int
 
-var Severities = [...]string {
+var Severities = [...]string{
 	"Minor",
 	"Major",
 	"Critical",
 }
 
 func (s Severity) String() string {
-	return Severities[s - 1]
+	return Severities[s-1]
 }
