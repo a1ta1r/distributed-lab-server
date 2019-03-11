@@ -1,7 +1,6 @@
 package entity
 
 import (
-	"github.com/jinzhu/gorm"
 	"time"
 )
 
@@ -14,14 +13,17 @@ const (
 )
 
 type Task struct {
-	gorm.Model
-	Name        string
-	Objective   string
-	Description *string
-	ParentTask  *Task
-	Initiator   User
-	Assignees   []User
-	Deadline    *time.Time
-	Difficulty  uint
-	Status      uint
+	ID          uint       `gorm:"primary_key" json:"id"`
+	CreatedAt   time.Time  `json:"created_at"`
+	UpdatedAt   time.Time  `json:"updated_at"`
+	DeletedAt   *time.Time `sql:"index" json:"deleted_at"`
+	Name        string     `json:"name"`
+	Objective   string     `json:"objective"`
+	Description *string    `json:"description"`
+	ParentTask  *Task      `json:"parent_task"`
+	Initiator   User       `json:"initiator"`
+	Assignees   []User     `json:"assignees"`
+	Deadline    *time.Time `json:"deadline"`
+	Severity    Severity   `json:"difficulty"`
+	Status      Status     `json:"status"`
 }
