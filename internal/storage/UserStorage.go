@@ -14,13 +14,11 @@ func NewUserStorage(db gorm.DB) UserStorage {
 }
 
 func (us UserStorage) AddUser(user entity.User) (entity.User, error) {
-	err := us.db.Save(user).Error
+	err := us.db.Save(&user).Error
 	return user, err
 }
 
-func (us UserStorage) GetUser(id uint) (entity.User, error) {
-	var user entity.User
-
+func (us UserStorage) GetUser(user entity.User) (entity.User, error) {
 	err := us.db.First(&user, user.ID).Error
 	return user, err
 }
@@ -33,7 +31,7 @@ func (us UserStorage) GetUsers() ([]entity.User, error) {
 }
 
 func (us UserStorage) UpdateUser(user entity.User) (entity.User, error) {
-	err := us.db.Save(user).Error
+	err := us.db.Save(&user).Error
 	return user, err
 }
 
