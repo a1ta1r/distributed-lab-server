@@ -30,5 +30,19 @@ func InitRouter() *gin.Engine {
 	router.PUT("/statuses/:id", StatusController.UpdateStatus)
 	router.DELETE("/statuses/:id", StatusController.DeleteStatus)
 
+	//Project
+	router.POST("/projects", ProjectController.AddProject)
+	router.GET("/projects", ProjectController.GetProjects)
+	router.GET("/projects/:id", ProjectController.GetProject)
+	router.PUT("/projects/:id", ProjectController.UpdateProject)
+	router.DELETE("/projects/:id", ProjectController.DeleteProject)
+
+	//Task
+	router.POST("/tasks", TaskController.AddTask)
+	router.GET("/tasks", TaskController.GetTasks)
+	router.GET("/tasks/:id", TaskController.GetTask)
+	router.PUT("/tasks/:id", TaskController.UpdateTask)
+	router.DELETE("/tasks/:id", TaskController.DeleteTask)
+
 	return router
 }
