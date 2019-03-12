@@ -6,4 +6,6 @@ type User struct {
 	Position string `json:"position"`
 	Status   string `json:"status"`
 	TeamID   uint   `json:"team_id"`
+	Username string `json:"username"`
+	Password string `json:"password"`
 }
