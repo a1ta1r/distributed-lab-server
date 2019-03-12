@@ -19,8 +19,9 @@ type Task struct {
 	Description *string    `json:"description"`
 	ParentTask  *Task      `json:"parent_task"`
 	Initiator   User       `json:"initiator"`
-	Assignees   []User     `json:"assignees"`
+	Assignees   []User     `gorm:"many2many:user_tasks;"`
 	Deadline    *time.Time `json:"deadline"`
 	Severity    Severity   `json:"difficulty"`
 	Status      Status     `json:"status"`
+	Project     Project
 }

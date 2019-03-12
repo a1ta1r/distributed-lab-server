@@ -5,6 +5,6 @@ type Project struct {
 	Name    string `json:"name"`
 	Team    Team   `json:"team"`
 	Owner   User   `json:"owner"`
-	Members []User `json:"members"`
-	Tasks   []Task `json:"tasks"`
+	Members []User `gorm:"many2many:project_members;"`
+	Tasks   []Task `gorm:"foreignkey:Project"`
 }
