@@ -23,7 +23,7 @@ func (us UserService) AddUser(user entity.User) entity.User {
 }
 
 func (us UserService) GetUsers() []entity.User {
-	users, err := us.userStorage.GetUsers()
+	users, err := us.userStorage.GetAllUsers()
 	if err != nil {
 		panic(err)
 	}

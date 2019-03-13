@@ -39,4 +39,3 @@ func (us TeamStorage) DeleteTeam(team entity.Team) error {
 	err := us.db.Delete(&team, team.ID).Error
 	return err
 }
-

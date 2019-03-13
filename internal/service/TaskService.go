@@ -7,14 +7,32 @@ import (
 )
 
 type TaskService struct {
-	taskStorage storage.TaskStorage
+	taskStorage    storage.TaskStorage
+	userStorage    storage.UserStorage
+	projectStorage storage.ProjectStorage
+	statusStorage  storage.StatusStorage
 }
 
-func NewTaskService(taskStorage storage.TaskStorage) TaskService {
-	return TaskService{taskStorage: taskStorage}
+func NewTaskService(taskStorage storage.TaskStorage,
+	userStorage storage.UserStorage,
+	projectStorage storage.ProjectStorage,
+	statusStorage storage.StatusStorage) TaskService {
+	return TaskService{
+		taskStorage:    taskStorage,
+		userStorage:    userStorage,
+		projectStorage: projectStorage,
+		statusStorage:  statusStorage,
+	}
 }
 
 func (us TaskService) AddTask(task entity.Task) entity.Task {
+	//TODO добавить хандлинг ошибок
+	task.Initiator, _ = us.userStorage.GetUser(task.Initiator)
+	task.Project, _ = us.projectStorage.GetProject(task.Project)
+	task.Initiator, _ = us.userStorage.GetUser(task.Initiator)
+	task.Status, _ = us.statusStorage.GetStatus(task.Status)
+	task.Assignees, _ = us.userStorage.GetUsers(task.Assignees)
+
 	task, err := us.taskStorage.AddTask(task)
 	if err != nil {
 		panic(err)

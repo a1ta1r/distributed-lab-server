@@ -2,9 +2,9 @@ package entity
 
 type Project struct {
 	DbAwareEntity
-	Name    string `json:"name"`
-	Team    Team   `json:"team"`
-	Owner   User   `json:"owner"`
+	Team    Team   `gorm:"foreignkey:ProjectId"`
+	Owner   User   `gorm:"foreignkey:OwnerId"`
+	OwnerId uint   `json:"owner_id"`
 	Members []User `gorm:"many2many:project_members;"`
 	Tasks   []Task `gorm:"foreignkey:Project"`
 }

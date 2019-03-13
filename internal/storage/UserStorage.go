@@ -23,11 +23,18 @@ func (us UserStorage) GetUser(user entity.User) (entity.User, error) {
 	return user, err
 }
 
-func (us UserStorage) GetUsers() ([]entity.User, error) {
+func (us UserStorage) GetAllUsers() ([]entity.User, error) {
 	var users []entity.User
 
 	err := us.db.Find(&users).Error
 	return users, err
+}
+
+func (us UserStorage) GetUsers(users []entity.User) ([]entity.User, error) {
+	var usersArray []entity.User
+
+	err := us.db.Where(entity.GetUserIds(users)).Find(&usersArray).Error
+	return usersArray, err
 }
 
 func (us UserStorage) UpdateUser(user entity.User) (entity.User, error) {

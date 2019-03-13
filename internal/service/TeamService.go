@@ -8,13 +8,21 @@ import (
 
 type TeamService struct {
 	teamStorage storage.TeamStorage
+	userStorage storage.UserStorage
 }
 
-func NewTeamService(teamStorage storage.TeamStorage) TeamService {
-	return TeamService{teamStorage: teamStorage}
+func NewTeamService(teamStorage storage.TeamStorage, userStorage storage.UserStorage) TeamService {
+	return TeamService{
+		teamStorage: teamStorage,
+		userStorage: userStorage,
+	}
 }
 
 func (us TeamService) AddTeam(team entity.Team) entity.Team {
+	//TODO добавить хандлинг ошибок
+	team.Owner, _ = us.userStorage.GetUser(team.Owner)
+	team.Users, _ = us.userStorage.GetUsers(team.Users)
+
 	team, err := us.teamStorage.AddTeam(team)
 	if err != nil {
 		panic(err)
@@ -55,4 +63,3 @@ func (us TeamService) DeleteTeam(team entity.Team) {
 		panic(err)
 	}
 }
-
