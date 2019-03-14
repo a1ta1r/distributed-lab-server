@@ -14,6 +14,7 @@ func NewProjectStorage(db gorm.DB) ProjectStorage {
 }
 
 func (us ProjectStorage) AddProject(project entity.Project) (entity.Project, error) {
+	us.db.Find(&project.Owner).Find(&project.Team)
 	err := us.db.Save(&project).Error
 	return project, err
 }
@@ -31,6 +32,7 @@ func (us ProjectStorage) GetProjects() ([]entity.Project, error) {
 }
 
 func (us ProjectStorage) UpdateProject(project entity.Project) (entity.Project, error) {
+	us.db.Find(&project.Owner).Find(&project.Team)
 	err := us.db.Save(&project).Error
 	return project, err
 }

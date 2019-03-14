@@ -14,6 +14,7 @@ func NewTaskStorage(db gorm.DB) TaskStorage {
 }
 
 func (us TaskStorage) AddTask(task entity.Task) (entity.Task, error) {
+	us.db.Find(&task.Status).Find(&task.Initiator).Find(&task.Project).Where(entity.GetUserIds(task.Assignees)).Find(&task.Assignees)
 	err := us.db.Save(&task).Error
 	return task, err
 }
@@ -31,6 +32,7 @@ func (us TaskStorage) GetTasks() ([]entity.Task, error) {
 }
 
 func (us TaskStorage) UpdateTask(task entity.Task) (entity.Task, error) {
+	us.db.Find(&task.Status).Find(&task.Initiator).Find(&task.Project).Where(entity.GetUserIds(task.Assignees)).Find(&task.Assignees)
 	err := us.db.Save(&task).Error
 	return task, err
 }

@@ -7,22 +7,11 @@ import (
 )
 
 type TaskService struct {
-	taskStorage    storage.TaskStorage
-	userStorage    storage.UserStorage
-	projectStorage storage.ProjectStorage
-	statusStorage  storage.StatusStorage
+	taskStorage storage.TaskStorage
 }
 
-func NewTaskService(taskStorage storage.TaskStorage,
-	userStorage storage.UserStorage,
-	projectStorage storage.ProjectStorage,
-	statusStorage storage.StatusStorage) TaskService {
-	return TaskService{
-		taskStorage:    taskStorage,
-		userStorage:    userStorage,
-		projectStorage: projectStorage,
-		statusStorage:  statusStorage,
-	}
+func NewTaskService(taskStorage storage.TaskStorage) TaskService {
+	return TaskService{taskStorage: taskStorage}
 }
 
 func (us TaskService) AddTask(task entity.Task) entity.Task {

@@ -15,7 +15,7 @@ var UserController = controller.NewUserController(UserService)
 
 // Team
 var TeamStorage = storage.NewTeamStorage(*Connection)
-var TeamService = service.NewTeamService(TeamStorage, UserStorage)
+var TeamService = service.NewTeamService(TeamStorage)
 var TeamController = controller.NewTeamController(TeamService)
 
 // Status
@@ -25,10 +25,10 @@ var StatusController = controller.NewStatusController(StatusService)
 
 // Project
 var ProjectStorage = storage.NewProjectStorage(*Connection)
-var ProjectService = service.NewProjectService(ProjectStorage, UserStorage, TeamStorage)
+var ProjectService = service.NewProjectService(ProjectStorage)
 var ProjectController = controller.NewProjectController(ProjectService)
 
 // Task
 var TaskStorage = storage.NewTaskStorage(*Connection)
-var TaskService = service.NewTaskService(TaskStorage, UserStorage, ProjectStorage, StatusStorage)
+var TaskService = service.NewTaskService(TaskStorage)
 var TaskController = controller.NewTaskController(TaskService)

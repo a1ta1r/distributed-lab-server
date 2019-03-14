@@ -14,6 +14,7 @@ func NewTeamStorage(db gorm.DB) TeamStorage {
 }
 
 func (us TeamStorage) AddTeam(team entity.Team) (entity.Team, error) {
+	us.db.Find(&team.Owner).Where(entity.GetUserIds(team.Users)).Find(&team.Users)
 	err := us.db.Save(&team).Error
 	return team, err
 }
@@ -31,6 +32,7 @@ func (us TeamStorage) GetTeams() ([]entity.Team, error) {
 }
 
 func (us TeamStorage) UpdateTeam(team entity.Team) (entity.Team, error) {
+	us.db.Find(&team.Owner).Where(entity.GetUserIds(team.Users)).Find(&team.Users)
 	err := us.db.Save(&team).Error
 	return team, err
 }
