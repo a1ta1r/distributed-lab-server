@@ -26,13 +26,6 @@ func NewTaskService(taskStorage storage.TaskStorage,
 }
 
 func (us TaskService) AddTask(task entity.Task) entity.Task {
-	//TODO добавить хандлинг ошибок
-	task.Initiator, _ = us.userStorage.GetUser(task.Initiator)
-	task.Project, _ = us.projectStorage.GetProject(task.Project)
-	task.Initiator, _ = us.userStorage.GetUser(task.Initiator)
-	task.Status, _ = us.statusStorage.GetStatus(task.Status)
-	task.Assignees, _ = us.userStorage.GetUsers(task.Assignees)
-
 	task, err := us.taskStorage.AddTask(task)
 	if err != nil {
 		panic(err)

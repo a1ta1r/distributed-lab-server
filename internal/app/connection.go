@@ -21,6 +21,7 @@ func GetConnection() *gorm.DB {
 
 	if connection == nil {
 		connection, err = gorm.Open("mysql", dsn)
+		connection = connection.Set("gorm:auto_preload", true)
 		if err != nil {
 			panic(err)
 		}
