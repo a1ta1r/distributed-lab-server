@@ -9,6 +9,9 @@ func InitRouter() *gin.Engine {
 		context.JSON(200, gin.H{"response": "OK"})
 	})
 
+	// Health
+	router.GET("/network", HealthController.GetNetworkInfo)
+
 	// User
 	router.POST("/users", UserController.AddUser)
 	router.GET("/users", UserController.GetUsers)

@@ -6,11 +6,13 @@ Cache-Control: no-cache
 
 ###
 
-POST http://localhost:3001/teams
+POST http://localhost/users
 Accept: */*
 Cache-Control: no-cache
 
-< team.json
+< user.json
 
 ###
 
+GET http://localhost/users
+###

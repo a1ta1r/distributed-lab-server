@@ -24,7 +24,7 @@ func GetConnection() *gorm.DB {
 		connection, err = gorm.Open("mysql", dsn)
 		connection = connection.Set("gorm:auto_preload", true)
 		if err != nil {
-			connection, err = tryPostgres()
+			//connection, err = tryPostgres()
 			if err != nil {
 				panic(err)
 			}

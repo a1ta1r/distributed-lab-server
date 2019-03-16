@@ -32,3 +32,6 @@ var ProjectController = controller.NewProjectController(ProjectService)
 var TaskStorage = storage.NewTaskStorage(*Connection)
 var TaskService = service.NewTaskService(TaskStorage)
 var TaskController = controller.NewTaskController(TaskService)
+
+var HealthService = service.NewHealthService(*connection)
+var HealthController = controller.NewHealthController(HealthService)
